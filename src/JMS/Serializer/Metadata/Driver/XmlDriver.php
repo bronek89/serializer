@@ -161,6 +161,10 @@ class XmlDriver extends AbstractFileDriver
                         $pMetadata->groups =  preg_split('/\s*,\s*/', (string) $groups);
                     }
 
+                    if (null !== $groups_context = $pElem->attributes()->groups_context) {
+                        $pMetadata->groups_context =  preg_split('/\s*,\s*/', (string) $groups_context);
+                    }
+
                     if (isset($pElem->{'xml-list'})) {
                         $pMetadata->xmlCollection = true;
 

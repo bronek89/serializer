@@ -41,6 +41,7 @@ use Doctrine\Common\Annotations\Reader;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Exclude;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\GroupsContext;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Until;
@@ -198,6 +199,17 @@ class AnnotationDriver implements DriverInterface
                                 throw new InvalidArgumentException(sprintf(
                                     'Invalid group name "%s" on "%s", did you mean to create multiple groups?',
                                     implode(', ', $propertyMetadata->groups),
+                                    $propertyMetadata->class.'->'.$propertyMetadata->name
+                                ));
+                            }
+                        }
+                    } elseif ($annot instanceof GroupsContext) {
+                        $propertyMetadata->groups_context = $annot->groups_context;
+                        foreach ((array) $propertyMetadata->groups_context as $groupName) {
+                            if (false !== strpos($groupName, ',')) {
+                                throw new InvalidArgumentException(sprintf(
+                                    'Invalid group name "%s" on "%s", did you mean to create multiple groups?',
+                                    implode(', ', $propertyMetadata->groups_context),
                                     $propertyMetadata->class.'->'.$propertyMetadata->name
                                 ));
                             }

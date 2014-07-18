@@ -30,6 +30,7 @@ class PropertyMetadata extends BasePropertyMetadata
     public $sinceVersion;
     public $untilVersion;
     public $groups;
+    public $groups_context;
     public $serializedName;
     public $type;
     public $xmlCollection = false;
@@ -104,6 +105,7 @@ class PropertyMetadata extends BasePropertyMetadata
             $this->sinceVersion,
             $this->untilVersion,
             $this->groups,
+            $this->groups_context,
             $this->serializedName,
             $this->type,
             $this->xmlCollection,
@@ -131,6 +133,7 @@ class PropertyMetadata extends BasePropertyMetadata
             $this->sinceVersion,
             $this->untilVersion,
             $this->groups,
+            $this->groups_context,
             $this->serializedName,
             $this->type,
             $this->xmlCollection,
